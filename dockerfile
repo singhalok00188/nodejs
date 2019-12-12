@@ -1,13 +1,17 @@
-# use a node base image
-FROM node:7-onbuild
+# using node 10.16.3 version from
+FROM node:10-alpine
 
-# set maintainer
-LABEL maintainer "miiro@getintodevops.com"
+# install python and other package
+RUN apk add --update git curl python make
 
-# set a health check
-HEALTHCHECK --interval=5s \
-            --timeout=5s \
-            CMD curl -f http://127.0.0.1:8000 || exit 1
+#make required directories
+RUN mkdir -p <directory path>
+#set work directory
+WORKDIR <directory path>
 
-# tell docker what port to expose
+#COPY Package file
+COPY package.json /.
+
+RUN npm install && npm cache verify
+
 EXPOSE 8000
