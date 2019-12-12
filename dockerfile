@@ -5,9 +5,9 @@ FROM node:10-alpine
 RUN apk add --update git curl python make
 
 #make required directories
-RUN mkdir -p <directory path>
+RUN mkdir -p C:\Dockertest\test
 #set work directory
-WORKDIR <directory path>
+WORKDIR C:\Dockertest\test
 
 #COPY Package file
 COPY package.json /.
