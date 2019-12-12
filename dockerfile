@@ -1,8 +1,8 @@
 #Use Base Image
-FROM windows:2016
+FROM ubuntu:latest
 
 #Set Maintainer
 LABEL maintainer "asingh@motionsoft.com"
 
-#CMD prompt
-CMD echo "hello Motionsoft" 
+#RUN command
+RUN echo "Hello world"
