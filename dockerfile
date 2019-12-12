@@ -1,17 +1,13 @@
-# using node 10.16.3 version from
-FROM node:10-alpine
+# use a node base image
+FROM node:7-onbuild
 
-# install python and other package
-RUN apk add --update git curl python make
+# set maintainer
+LABEL maintainer "miiro@getintodevops.com"
 
-#make required directories
-RUN mkdir -p C:\Dockertest\test
-#set work directory
-WORKDIR C:\Dockertest\test
+# set a health check
+HEALTHCHECK --interval=5s \
+            --timeout=5s \
+            CMD curl -f http://127.0.0.1:8000 || exit 1
 
-#COPY Package file
-COPY package.json /.
-
-RUN npm install && npm cache verify
-
+# tell docker what port to expose
 EXPOSE 8000
